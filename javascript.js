@@ -1,6 +1,3 @@
-humanScore = 0;
-computerScore = 0;
-
 function getComputerChoice() {
   // Randomly return either: rock, papers, or scissors
 
@@ -21,33 +18,52 @@ function getHumanChoice() {
   return prompt("Choice: ").toLowerCase();
 }
 
-function playRound() {
-  let humanChoice = getHumanChoice();
-  let computerChoice = getComputerChoice();
-
-  console.log("humanChoice: " + humanChoice);
-  console.log("computerChoice: " + computerChoice);
-
-  // User wins
-  if (
-    (humanChoice === "rock" && computerChoice === "scissors") ||
-    (humanChoice === "paper" && computerChoice === "rock") ||
-    (humanChoice === "scissors" && computerChoice === "paper")
-  ) {
-    humanScore += 1;
-    console.log(`You win! ${capitalise(humanChoice)} beats ${computerChoice}.`);
-  } else if (humanChoice === computerChoice) {
-    console.log(`You draw! `);
-  } else {
-    computerScore += 1;
-    console.log(
-      `You lose! ${capitalise(computerChoice)} beats ${humanChoice}.`
-    );
-  }
-}
-
 function capitalise(str) {
   return str[0].toUpperCase() + str.slice(1);
 }
 
-playRound();
+function playGame() {
+  function playRound() {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+
+    console.log("humanChoice: " + humanChoice);
+    console.log("computerChoice: " + computerChoice);
+
+    // User wins
+    if (
+      (humanChoice === "rock" && computerChoice === "scissors") ||
+      (humanChoice === "paper" && computerChoice === "rock") ||
+      (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+      humanScore += 1;
+      console.log(
+        `You win! ${capitalise(humanChoice)} beats ${computerChoice}.`
+      );
+    } else if (humanChoice === computerChoice) {
+      console.log(`You draw! `);
+    } else {
+      computerScore += 1;
+      console.log(
+        `You lose! ${capitalise(computerChoice)} beats ${humanChoice}.`
+      );
+    }
+  }
+
+  let humanScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    playRound();
+  }
+
+  if (humanScore > computerScore) {
+    console.log("The winner is... YOU! :)");
+  } else if (humanScore < computerScore) {
+    console.log("The winner is the Computer :(");
+  } else {
+    console.log("It was a draw...");
+  }
+}
+
+playGame();
