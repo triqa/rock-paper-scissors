@@ -2,21 +2,24 @@ function getComputerChoice() {
   // Randomly return either: rock, papers, or scissors
 
   // Get a num either: 0 (rock), 1 (paper), 2 (scissors)
-  randNum = Math.floor(Math.random() * 3);
+  let randNum = Math.floor(Math.random() * 3);
 
   switch (randNum) {
     case 0:
-      result = "rock";
-      break;
+      return "rock";
     case 1:
-      result = "paper";
-      break;
+      return "paper";
     case 2:
-      result = "scissors";
-      break;
+      return "scissors";
   }
-
-  console.log(`${randNum}: ${result}`);
 }
 
-getComputerChoice();
+function getHumanChoice() {
+  return prompt("Choice: ");
+}
+
+let humanChoice = getHumanChoice();
+let computerChoice = getComputerChoice();
+
+console.log("humanChoice: " + humanChoice);
+console.log("computerChoice: " + computerChoice);
