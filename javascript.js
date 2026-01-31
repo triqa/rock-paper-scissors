@@ -34,26 +34,35 @@ function playGame() {
       (humanChoice === "scissors" && computerChoice === "paper")
     ) {
       humanScore += 1;
-      console.log(
-        `You win! ${capitalise(humanChoice)} beats ${computerChoice}.`,
-      );
+      resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)},
+       Computer chose: ${capitalise(computerChoice)}
+       ... You win!`;
     } else if (humanChoice === computerChoice) {
-      console.log(`You draw! `);
+      resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)},
+       Computer chose: ${capitalise(computerChoice)}
+       ... You draw! `;
     } else {
       computerScore += 1;
-      console.log(
-        `You lose! ${capitalise(computerChoice)} beats ${humanChoice}.`,
-      );
+      resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)}, 
+      Computer chose: ${capitalise(computerChoice)}
+      ... You lose!`;
     }
   }
 
+  const main = document.querySelector("main");
+
+  // Create the rock/paper/scissors buttons for the human choice
   const rockButton = document.createElement("button");
   const paperButton = document.createElement("button");
   const scissorsButton = document.createElement("button");
-
   rockButton.textContent = "Rock";
   paperButton.textContent = "Paper";
   scissorsButton.textContent = "Scissors";
+
+  // Create div to display the results
+  const resultsDisplay = document.createElement("div");
+  main.appendChild(resultsDisplay);
+  resultsDisplay.style.whiteSpace = "pre-line"; // preserve newlines
 
   const optionButtons = document.querySelector("#option-buttons");
 
