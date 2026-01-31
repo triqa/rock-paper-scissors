@@ -34,20 +34,30 @@ function playGame() {
       (humanChoice === "scissors" && computerChoice === "paper")
     ) {
       humanScore += 1;
+      scoreDisplay.textContent = `Your score: ${humanScore} | Computer score: ${computerScore}\n`;
       resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)},
        Computer chose: ${capitalise(computerChoice)}
        ... You win!`;
     } else if (humanChoice === computerChoice) {
+      scoreDisplay.textContent = `Your score: ${humanScore} | Computer score: ${computerScore}\n`;
       resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)},
        Computer chose: ${capitalise(computerChoice)}
        ... You draw! `;
     } else {
       computerScore += 1;
+      scoreDisplay.textContent = `Your score: ${humanScore} | Computer score: ${computerScore}\n`;
       resultsDisplay.textContent = `You chose: ${capitalise(humanChoice)}, 
       Computer chose: ${capitalise(computerChoice)}
       ... You lose!`;
     }
   }
+  let humanScore = 0;
+  let computerScore = 0;
+  // Create div to display the score
+  const scoreDisplay = document.createElement("div");
+  main.appendChild(scoreDisplay);
+  scoreDisplay.style.whiteSpace = "pre-line"; // preserve newlines
+  scoreDisplay.textContent = `Your score: ${humanScore} | Computer score: ${computerScore}`;
 
   // Create the rock/paper/scissors buttons for the human choice
   const rockButton = document.createElement("button");
@@ -84,9 +94,6 @@ function playGame() {
   optionButtons.appendChild(paperButton);
   optionButtons.appendChild(scissorsButton);
 
-  let humanScore = 0;
-  let computerScore = 0;
-
   if (humanScore > computerScore) {
     console.log("The winner is... YOU! :)");
   } else if (humanScore < computerScore) {
@@ -104,5 +111,6 @@ const startGameBtn = document.querySelector("#start-game");
 startGameBtn.addEventListener("click", () => {
   console.log("Game screen opened.");
   optionButtons.removeChild(startGameBtn);
+
   playGame();
 });
