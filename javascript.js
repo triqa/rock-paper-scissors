@@ -99,23 +99,10 @@ function playGame() {
   optionButtons.appendChild(paperButton);
   optionButtons.appendChild(scissorsButton);
 
-  rockButton.addEventListener("click", () => {
-    console.log("Pressed ROCK");
-    choice = "rock";
-    playRound(choice);
-  });
-
-  paperButton.addEventListener("click", () => {
-    choice = "paper";
-    console.log("Pressed PAPER");
-    playRound(choice);
-  });
-
-  scissorsButton.addEventListener("click", () => {
-    choice = "scissors";
-    console.log("Pressed SCISSORS");
-    playRound(choice);
-  });
+  // Allow player to press button to choose rock/paper/scissors to play a round
+  rockButton.addEventListener("click", () => playRound("rock"));
+  paperButton.addEventListener("click", () => playRound("paper"));
+  scissorsButton.addEventListener("click", () => playRound("scissors"));
 }
 
 const main = document.querySelector("main");
