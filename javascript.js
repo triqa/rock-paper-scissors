@@ -21,6 +21,22 @@ function capitalise(str) {
 }
 
 function playGame() {
+  function displayWinScreen(humanScore, computerScore, resultsDisplay) {
+    console.log("DISPLAY WIN SCREEN");
+    // Hide the buttons as someone has won
+    optionButtons.removeChild(rockButton);
+    optionButtons.removeChild(paperButton);
+    optionButtons.removeChild(scissorsButton);
+
+    if (humanScore > computerScore) {
+      resultsDisplay.style.color = "green";
+      resultsDisplay.textContent = "The winner is... YOU! :)";
+    } else if (humanScore < computerScore) {
+      resultsDisplay.style.color = "red";
+      resultsDisplay.textContent = "The winner is the Computer :(";
+    }
+  }
+
   function playRound(humanChoice) {
     let computerChoice = getComputerChoice();
 
@@ -50,9 +66,16 @@ function playGame() {
       Computer chose: ${capitalise(computerChoice)}
       ... You lose!`;
     }
+
+    // Display win screen if someone has now won
+    if (humanScore === 5 || computerScore === 5) {
+      displayWinScreen(humanScore, computerScore, resultsDisplay);
+    }
   }
+
   let humanScore = 0;
   let computerScore = 0;
+
   // Create div to display the score
   const scoreDisplay = document.createElement("div");
   main.appendChild(scoreDisplay);
@@ -72,6 +95,10 @@ function playGame() {
   main.appendChild(resultsDisplay);
   resultsDisplay.style.whiteSpace = "pre-line"; // preserve newlines
 
+  optionButtons.appendChild(rockButton);
+  optionButtons.appendChild(paperButton);
+  optionButtons.appendChild(scissorsButton);
+
   rockButton.addEventListener("click", () => {
     console.log("Pressed ROCK");
     choice = "rock";
@@ -89,18 +116,6 @@ function playGame() {
     console.log("Pressed SCISSORS");
     playRound(choice);
   });
-
-  optionButtons.appendChild(rockButton);
-  optionButtons.appendChild(paperButton);
-  optionButtons.appendChild(scissorsButton);
-
-  if (humanScore > computerScore) {
-    console.log("The winner is... YOU! :)");
-  } else if (humanScore < computerScore) {
-    console.log("The winner is the Computer :(");
-  } else {
-    console.log("It was a draw...");
-  }
 }
 
 const main = document.querySelector("main");
