@@ -49,8 +49,6 @@ function playGame() {
     }
   }
 
-  const main = document.querySelector("main");
-
   // Create the rock/paper/scissors buttons for the human choice
   const rockButton = document.createElement("button");
   const paperButton = document.createElement("button");
@@ -63,8 +61,6 @@ function playGame() {
   const resultsDisplay = document.createElement("div");
   main.appendChild(resultsDisplay);
   resultsDisplay.style.whiteSpace = "pre-line"; // preserve newlines
-
-  const optionButtons = document.querySelector("#option-buttons");
 
   rockButton.addEventListener("click", () => {
     console.log("Pressed ROCK");
@@ -100,4 +96,13 @@ function playGame() {
   }
 }
 
-playGame();
+const main = document.querySelector("main");
+const optionButtons = document.querySelector("#option-buttons");
+const startGameBtn = document.querySelector("#start-game");
+
+// Press the start button to play the game
+startGameBtn.addEventListener("click", () => {
+  console.log("Game screen opened.");
+  optionButtons.removeChild(startGameBtn);
+  playGame();
+});
