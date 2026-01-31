@@ -22,7 +22,6 @@ function capitalise(str) {
 
 function playGame() {
   function displayWinScreen(humanScore, computerScore, resultsDisplay) {
-    console.log("DISPLAY WIN SCREEN");
     // Hide the buttons as someone has won
     optionButtons.removeChild(rockButton);
     optionButtons.removeChild(paperButton);
@@ -39,9 +38,6 @@ function playGame() {
 
   function playRound(humanChoice) {
     let computerChoice = getComputerChoice();
-
-    console.log("humanChoice: " + humanChoice);
-    console.log("computerChoice: " + computerChoice);
 
     // User wins
     if (
@@ -76,13 +72,13 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  // Create div to display the score
+  // Display the scores
   const scoreDisplay = document.createElement("div");
   main.appendChild(scoreDisplay);
   scoreDisplay.style.whiteSpace = "pre-line"; // preserve newlines
   scoreDisplay.textContent = `Your score: ${humanScore} | Computer score: ${computerScore}`;
 
-  // Create the rock/paper/scissors buttons for the human choice
+  // Display the rock/paper/scissors buttons for user choice
   const rockButton = document.createElement("button");
   const paperButton = document.createElement("button");
   const scissorsButton = document.createElement("button");
@@ -90,7 +86,7 @@ function playGame() {
   paperButton.textContent = "Paper";
   scissorsButton.textContent = "Scissors";
 
-  // Create div to display the results
+  // Display the result of the current round: win/lose/draw
   const resultsDisplay = document.createElement("div");
   main.appendChild(resultsDisplay);
   resultsDisplay.style.whiteSpace = "pre-line"; // preserve newlines
